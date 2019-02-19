@@ -5,10 +5,9 @@ def config = [
     affiliation            : "paas",
     downstreamSystemtestJob: [branch: env.BRANCH_NAME],
     credentialsId          : "github",
-    javaType               : "oracle",
     versionStrategy        : [
-        [branch: 'master', versionHint: '2'],
-        [branch: 'release/v1', versionHint: '1']
+        [branch: 'master', versionHint: '3'],
+        [branch: 'release/v2', versionHint: '2']
     ]
 ]
 fileLoader.withGit(config.pipelineScript, config.scriptVersion) {
