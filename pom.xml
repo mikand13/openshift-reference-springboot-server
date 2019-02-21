@@ -14,24 +14,41 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.1.RELEASE</version>
+    <version>2.1.3.RELEASE</version>
     <relativePath />
   </parent>
 
   <properties>
     <aurora.starters.version>1.4.1</aurora.starters.version>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <java.version>1.8</java.version>
-    <maven.min-version>3.3.3</maven.min-version>
+    <java.version>11</java.version>
+    <maven.min-version>3.5.0</maven.min-version>
+
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
     <sonar.jacoco.reportPaths>${project.basedir}/target/jacoco.exec</sonar.jacoco.reportPaths>
     <sonar.coverage.exclusions>**/*Main.java</sonar.coverage.exclusions>
     <sonar.tests>src/test/groovy</sonar.tests>
-    <spock.version>1.1-groovy-2.4</spock.version>
+    <sonar-maven-plugin.version>3.5.0.1254</sonar-maven-plugin.version>
+
+    <gmavenplus-plugin.version>1.6.2</gmavenplus-plugin.version>
+    <spock.version>1.2-groovy-2.5</spock.version>
+    <cglib-nodep.version>3.2.9</cglib-nodep.version>
+    <pitest-maven.version>1.4.3</pitest-maven.version>
+    <jacoco-maven-plugin.version>0.8.2</jacoco-maven-plugin.version>
+
+    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+
+    <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
+
+    <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+    <checkstyle-config.version>1.0.1</checkstyle-config.version>
+    <checkstyle.version>7.8.1</checkstyle.version>
+
+    <spring-boot-thin-layout.version>1.0.17.RELEASE</spring-boot-thin-layout.version>
+    <asciidoctor-maven-plugin.version>1.5.7.1</asciidoctor-maven-plugin.version>
+
     <!-- Project specific Nexus staging profileID. Must be changed by project -->
     <!--<staging-profile-id-med-clm>specify-your-own</staging-profile-id-med-clm>-->
-    <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+    <ojdbc8.version>12.2.0.1</ojdbc8.version>
   </properties>
 
   <distributionManagement>
@@ -56,47 +73,32 @@
         <plugin>
           <groupId>org.codehaus.gmavenplus</groupId>
           <artifactId>gmavenplus-plugin</artifactId>
-          <version>1.5</version>
-        </plugin>
-        <plugin>
-          <groupId>no.skatteetaten.aurora.maven.plugins</groupId>
-          <artifactId>aurora-cd</artifactId>
-          <version>3.2.1</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-assembly-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>${gmavenplus-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.2</version>
+          <version>${sonar-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.9</version>
+          <version>${jacoco-maven-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.pitest</groupId>
           <artifactId>pitest-maven</artifactId>
-          <version>1.2.0</version>
+          <version>${pitest-maven.version}</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-checkstyle-plugin</artifactId>
-          <version>2.17</version>
+          <version>${maven-checkstyle-plugin.version}</version>
         </plugin>
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>1.5.2</version>
+          <version>${asciidoctor-maven-plugin.version}</version>
           <configuration>
             <backend>html</backend>
             <doctype>book</doctype>
@@ -135,7 +137,7 @@
           <execution>
             <goals>
               <goal>compile</goal>
-              <goal>testCompile</goal>
+              <goal>compileTests</goal>
             </goals>
           </execution>
         </executions>
@@ -147,7 +149,7 @@
           <dependency>
             <groupId>org.springframework.boot.experimental</groupId>
             <artifactId>spring-boot-thin-layout</artifactId>
-            <version>1.0.17.RELEASE</version>
+            <version>${spring-boot-thin-layout.version}</version>
           </dependency>
         </dependencies>
         <executions>
@@ -268,19 +270,19 @@
           <dependency>
             <groupId>com.puppycrawl.tools</groupId>
             <artifactId>checkstyle</artifactId>
-            <version>7.8.1</version>
+            <version>${checkstyle.version}</version>
           </dependency>
           <dependency>
             <groupId>no.skatteetaten.aurora.checkstyle</groupId>
             <artifactId>checkstyle-config</artifactId>
-            <version>1.0.0</version>
+            <version>${checkstyle-config.version}</version>
           </dependency>
         </dependencies>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>1.4.1</version>
+        <version>${maven-enforcer-plugin.version}</version>
         <executions>
           <execution>
             <id>enforce</id>
@@ -303,14 +305,6 @@
               <phases>clean,deploy,site</phases>
             </requirePluginVersions>
           </rules>
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
         </configuration>
       </plugin>
     </plugins>
@@ -340,18 +334,12 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.codehaus.groovy</groupId>
-      <artifactId>groovy-all</artifactId>
-      <version>2.4.9</version>
+      <groupId>cglib</groupId>
+      <artifactId>cglib-nodep</artifactId>
+      <version>${cglib-nodep.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>cglib</groupId>
-      <artifactId>cglib-nodep</artifactId>
-      <version>3.1</version>
-      <scope>test</scope>
-    </dependency>
-      <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
@@ -367,7 +355,7 @@
     <dependency>
       <groupId>com.oracle</groupId>
       <artifactId>ojdbc8</artifactId>
-      <version>12.2.0.1</version>
+      <version>${ojdbc8.version}</version>
     </dependency>
     <dependency>
       <groupId>org.flywaydb</groupId>
@@ -376,7 +364,6 @@
     <dependency>
       <groupId>com.h2database</groupId>
       <artifactId>h2</artifactId>
-      <version>1.4.196</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
