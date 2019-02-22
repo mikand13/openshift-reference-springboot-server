@@ -2,6 +2,7 @@ package no.skatteetaten.aurora.openshift.reference.springboot.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

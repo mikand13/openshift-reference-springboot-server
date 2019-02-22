@@ -3,6 +3,7 @@ package no.skatteetaten.aurora.openshift.reference.springboot.health;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.actuate.health.HealthIndicator;
 import org.springframework.stereotype.Component;
+
 import no.skatteetaten.aurora.openshift.reference.springboot.service.CounterDatabaseService;
 
 /**
