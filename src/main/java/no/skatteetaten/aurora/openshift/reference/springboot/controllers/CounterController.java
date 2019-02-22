@@ -1,10 +1,8 @@
 package no.skatteetaten.aurora.openshift.reference.springboot.controllers;
 
 import java.util.Map;
-
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import no.skatteetaten.aurora.openshift.reference.springboot.service.CounterDatabaseService;
 
 /**

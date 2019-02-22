@@ -2,7 +2,6 @@ package no.skatteetaten.aurora.openshift.reference.springboot.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,14 +11,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-
 /**
  * A sample error handler. You can add your own exceptions below to control the error codes that should be used in
  * various error scenarios.
  */
 @ControllerAdvice
 public class ErrorHandler extends ResponseEntityExceptionHandler {
-
 
     @ExceptionHandler({ RuntimeException.class })
     protected ResponseEntity<Object> handleGenericError(RuntimeException e, WebRequest request) {
