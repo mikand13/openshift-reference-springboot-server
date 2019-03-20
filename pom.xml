@@ -19,7 +19,7 @@
   </parent>
 
   <properties>
-    <aurora.starters.version>2.0.0</aurora.starters.version>
+    <aurora.starters.version>2.1.0</aurora.starters.version>
     <java.version>11</java.version>
     <maven.min-version>3.5.0</maven.min-version>
 
@@ -41,7 +41,7 @@
 
     <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
     <checkstyle-config.version>2.1.5</checkstyle-config.version>
-    <checkstyle.version>8.17</checkstyle.version>
+    <checkstyle.version>8.18</checkstyle.version>
 
     <spring-boot-thin-layout.version>1.0.17.RELEASE</spring-boot-thin-layout.version>
     <asciidoctor-maven-plugin.version>1.5.7.1</asciidoctor-maven-plugin.version>
@@ -369,6 +369,21 @@
   </dependencies>
 
   <profiles>
+    <profile>
+      <activation>
+        <property>
+          <name>springBootDevtools</name>
+          <value>true</value>
+        </property>
+      </activation>
+      <id>devtools</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-devtools</artifactId>
+        </dependency>
+      </dependencies>
+    </profile>
     <profile>
       <id>release-staging</id>
       <activation>

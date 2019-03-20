@@ -288,5 +288,24 @@ Build data for docker images is read from the docker part of the ```src/main/ass
 It is recommended to take a look at the productivity features of spring boot developer tools. See
 [Developer Tools](http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html).
 
-Also, note that the developer-tools artifact will be removed by the Leveransepakkebygger when building Docker images
-with semantic versions (for instance 1.3.3), and hence only be available for -SNAPSHOT builds.
+Developement tools are activated via a profile. In order to always activate the profile when building locally add the following to your
+`~/.m2/settings.xml`
+
+    <...>
+		<profile>
+			<id>enable-devtools</id>
+			<properties>
+				<springBootDevtools>true</springBootDevtools>
+			</properties>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>enable-devtools</activeProfile>
+	</activeProfiles>
+</settings>
+
+In Jenkins this will be disabled so that all Leveransepakke that is built on Jenkins will not have devtools included. If
+you want to have jenkins in a snapshot build use the development flow and build it locally. Or conditionally add the `devtools`
+ profile to the deploy goal in jenkins pipeline.
+   	
