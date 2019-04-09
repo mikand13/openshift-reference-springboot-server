@@ -10,7 +10,7 @@ In this repository your will find examples on how to solve common technical issu
 applications running within the networks of Skatteetaten and especially on the  Aurora OpenShift platform. This includes logging, handling database 
 migrations, testing, security, application versioning, build pipeline, to name a few.
 
-The Reference Application is implemented in [Spring Boot](https://projects.spring.io/spring-boot/).
+The Reference Application is implemented in [Spring Boot](https://spring.io/projects/spring-boot).
 
 In order to deploy this application on the [AuroraPlattform](https://skatteetaten.github.io/aurora) using [AuroraConfig](https://skatteetaten.github.io/aurora/documentation/aurora-config/) the following must be specified in the base file:
 
@@ -53,7 +53,7 @@ fork/export:
 
 ## Starters
 
-The application has one starter  [aurora-spring-boot-starter](https://github.com/Skatteetaten/aurora-spring-boot-starters/tree/master/aurora) in order to set up normal aurora requirements such as
+The application has one starter  [aurora-springboot2-starter](https://github.com/Skatteetaten/aurora-springboot2-starter/tree/master) in order to set up normal aurora requirements such as
  - grouping properties into their own property sources
  - setting default properties for actuator
  - instrumenting RestTemplates with metrics
@@ -163,7 +163,7 @@ mechanisms.
 ### /prometheus - Metrics   
 
 The reference application sets up metrics as described in the 
-[aurora-spring-boot-starter](https://github.com/Skatteetaten/aurora-spring-boot-starters/tree/master/aurora)
+[aurora-springboot2-starter](https://github.com/Skatteetaten/aurora-springboot2-starter/tree/master)
 
 For applications that are deployed to OpenShift, metrics exposed at ```/prometheus``` (default, configurable) in the
 format required by Prometheus will be automatically scraped.
@@ -192,7 +192,7 @@ For details, see:
 
 ## Documentation
 
-For documentation, the Reference Application configured to use [spring-rest-docs](https://projects.spring.io/spring-restdocs/) 
+For documentation, the Reference Application configured to use [spring-rest-docs](https://spring.io/projects/spring-restdocs) 
 which is an approach to documentation that combines hand-written documentation with auto-generated snippets produced 
 with Spring MVC Test. Please read the spring-rest-docs documentation for an overview of how the technology works.
 
