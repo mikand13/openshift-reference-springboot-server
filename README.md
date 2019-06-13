@@ -15,7 +15,7 @@ The Reference Application is implemented in [Spring Boot](https://spring.io/proj
 In order to deploy this application on the [AuroraPlattform](https://skatteetaten.github.io/aurora) using [AuroraConfig](https://skatteetaten.github.io/aurora/documentation/aurora-config/) the following must be specified in the base file:
 
 ```
-actuator:
+prometheus:
   path: /actuator/prometheus
 ```
 
