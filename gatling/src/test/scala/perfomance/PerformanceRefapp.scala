@@ -16,7 +16,7 @@ class PerformanceRefapp extends Simulation {
 		println("Running Performance Test at host: " + targetHost)
 
 		val httpProtocol = http
-			.baseURL(targetHost)
+			.baseUrl(targetHost)
 			.inferHtmlResources(BlackList(""".*\.css, .*\.js and .*\.ico"""), WhiteList())
 			.header("korrelasjonsid", session => korId)
 			.acceptHeader("*/*")
@@ -34,7 +34,7 @@ class PerformanceRefapp extends Simulation {
 			.headers(counterHeader))
 
 		setUp(
-			scn.inject(rampUsers(numUsers) over (timeSpan seconds))
+			scn.inject(rampUsers(numUsers) during (timeSpan seconds))
   			.protocols(httpProtocol)
 		).assertions(
 			global.successfulRequests.percent.is(100),
