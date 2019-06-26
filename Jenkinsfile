@@ -5,6 +5,7 @@ def config = [
     downstreamSystemtestJob    : [branch: env.BRANCH_NAME],
     credentialsId              : "github",
     javaVersion                : 11,
+    nodeVersion                : 10,
     jiraFiksetIKomponentversjon: true,
     chatRoom                   : "#aos-notifications",
     compileProperties          : "-U",
