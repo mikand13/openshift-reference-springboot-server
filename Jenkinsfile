@@ -11,7 +11,8 @@ def config = [
     chatRoom                   : "#aos-notifications",
     compileProperties          : "-U",
     versionStrategy            : [
-        [branch: 'master', versionHint: '3'],
+        [branch: 'master', versionHint: '4'],
+        [branch: 'release/v3', versionHint: '3'],
         [branch: 'release/v2', versionHint: '2'],
         [branch: 'release/v1', versionHint: '1']
     ]

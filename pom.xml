@@ -14,12 +14,12 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.6.RELEASE</version>
+    <version>2.1.9.RELEASE</version>
     <relativePath />
   </parent>
 
   <properties>
-    <aurora.starters.version>2.2.1</aurora.starters.version>
+    <aurora.starters.version>2.3.0</aurora.starters.version>
     <java.version>11</java.version>
     <maven.min-version>3.5.0</maven.min-version>
 
@@ -38,7 +38,7 @@
     <maven-enforcer-plugin.version>1.4.1</maven-enforcer-plugin.version>
 
     <maven-checkstyle-plugin.version>3.1.0</maven-checkstyle-plugin.version>
-    <checkstyle-config.version>2.1.7</checkstyle-config.version>
+    <checkstyle-config.version>2.2.0</checkstyle-config.version>
     <checkstyle.version>8.23</checkstyle.version>
 
     <spring-boot-thin-layout.version>1.0.22.RELEASE</spring-boot-thin-layout.version>
@@ -49,13 +49,13 @@
 
   <distributionManagement>
     <repository>
-      <id>releases</id>
-      <url>http://aurora/nexus/content/repositories/releases</url>
+      <id>releases-nexus3</id>
+      <url>https://nexus.sits.no/repository/maven-releases</url>
     </repository>
     <snapshotRepository>
-      <id>snapshots</id>
+      <id>snapshots-nexus3</id>
       <name>Internal Snapshots</name>
-      <url>http://aurora/nexus/content/repositories/snapshots</url>
+      <url>https://nexus.sits.no/repository/maven-snapshots</url>
     </snapshotRepository>
   </distributionManagement>
 
