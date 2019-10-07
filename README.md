@@ -2,6 +2,8 @@
 
 This version of the reference application is based upon springboot v2, look in the release/v1 branch for a version based upon springboot v1
 
+If your team has not migrated to v7 of Jenkins pipeline yet look at the release/v3 branch for the latest reference application on v6 pipeline version.
+
 The intention of the Reference Application is to serve as a guide when developing Business Applications
 (Fagapplikasjoner) within The Norwegian Tax Administration (Skatteetaten); applications implementing the core business 
 rules in the tax domain for which Skatteetaten is responsible.
