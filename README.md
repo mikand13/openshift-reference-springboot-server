@@ -10,7 +10,16 @@ In this repository your will find examples on how to solve common technical issu
 applications running within the networks of Skatteetaten and especially on the  Aurora OpenShift platform. This includes logging, handling database 
 migrations, testing, security, application versioning, build pipeline, to name a few.
 
-The Reference Application is implemented in [Spring Boot](https://projects.spring.io/spring-boot/).
+The Reference Application is implemented in [Spring Boot](https://spring.io/projects/spring-boot).
+
+In order to deploy this application on the [AuroraPlattform](https://skatteetaten.github.io/aurora) using [AuroraConfig](https://skatteetaten.github.io/aurora/documentation/aurora-config/) the following must be specified in the base file:
+
+```
+prometheus:
+  path: /actuator/prometheus
+```
+
+The standard value is /prometheus that works for spring boot 1 based applications but not boot2 based applications.
 
 
 # About the Core Technologies
@@ -34,6 +43,7 @@ central files, like the ```pom.xml``` and ```application.yml```.
 Regardless of the approach you use to keep up with changes, you will have to make the following changes to the
 fork/export:
 
+ * change the ```iqOrganizationName``` in the `Jenkinsfile` to match your organization
  * change the ```groupId```, ```artifactId```, ```name``` and ```description``` in the ```pom.xml``` to match that of your application
  * rename the main package in ```src/main``` to match that of your application
  * change the ```info.links``` in ```application.yml``` to match that of your application
@@ -44,7 +54,7 @@ fork/export:
 
 ## Starters
 
-The application has one starter  [aurora-spring-boot-starter](https://github.com/Skatteetaten/aurora-spring-boot-starters/tree/master/aurora) in order to set up normal aurora requirements such as
+The application has one starter  [aurora-springboot2-starter](https://github.com/Skatteetaten/aurora-springboot2-starter/tree/master) in order to set up normal aurora requirements such as
  - grouping properties into their own property sources
  - setting default properties for actuator
  - instrumenting RestTemplates with metrics
@@ -154,7 +164,7 @@ mechanisms.
 ### /prometheus - Metrics   
 
 The reference application sets up metrics as described in the 
-[aurora-spring-boot-starter](https://github.com/Skatteetaten/aurora-spring-boot-starters/tree/master/aurora)
+[aurora-springboot2-starter](https://github.com/Skatteetaten/aurora-springboot2-starter/tree/master)
 
 For applications that are deployed to OpenShift, metrics exposed at ```/prometheus``` (default, configurable) in the
 format required by Prometheus will be automatically scraped.
@@ -183,7 +193,7 @@ For details, see:
 
 ## Documentation
 
-For documentation, the Reference Application configured to use [spring-rest-docs](https://projects.spring.io/spring-restdocs/) 
+For documentation, the Reference Application configured to use [spring-rest-docs](https://spring.io/projects/spring-restdocs) 
 which is an approach to documentation that combines hand-written documentation with auto-generated snippets produced 
 with Spring MVC Test. Please read the spring-rest-docs documentation for an overview of how the technology works.
 
@@ -279,5 +289,24 @@ Build data for docker images is read from the docker part of the ```src/main/ass
 It is recommended to take a look at the productivity features of spring boot developer tools. See
 [Developer Tools](http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html).
 
-Also, note that the developer-tools artifact will be removed by the Leveransepakkebygger when building Docker images
-with semantic versions (for instance 1.3.3), and hence only be available for -SNAPSHOT builds.
+Developement tools are activated via a profile. In order to always activate the profile when building locally add the following to your
+`~/.m2/settings.xml`
+
+    <...>
+		<profile>
+			<id>enable-devtools</id>
+			<properties>
+				<springBootDevtools>true</springBootDevtools>
+			</properties>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>enable-devtools</activeProfile>
+	</activeProfiles>
+</settings>
+
+In Jenkins this will be disabled so that all Leveransepakke that is built on Jenkins will not have devtools included. If
+you want to have jenkins in a snapshot build use the development flow and build it locally. Or conditionally add the `devtools`
+ profile to the deploy goal in jenkins pipeline.
+   	
