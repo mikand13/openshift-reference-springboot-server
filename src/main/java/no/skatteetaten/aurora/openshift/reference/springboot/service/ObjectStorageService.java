@@ -25,16 +25,16 @@ public class ObjectStorageService {
     }
 
     public void putFile(String keyName, File file) {
-        withS3(s3Client -> {
+        withS3(s3 -> {
             var request = new PutObjectRequest(s3Properties.getBucketName(), getKeyName(keyName), file);
-            s3Client.putObject(request);
+            s3.putObject(request);
         });
     }
 
     public InputStream getObjectInputStream(String keyName) {
-        return withS3(s3Client -> {
+        return withS3(s3 -> {
             var request = new GetObjectRequest(s3Properties.getBucketName(), getKeyName(keyName));
-            var objectPortion = s3Client.getObject(request);
+            var objectPortion = s3.getObject(request);
             return objectPortion.getObjectContent();
         });
     }
