@@ -1,4 +1,4 @@
-package no.skatteetaten.aurora.openshift.reference.springboot;
+package no.skatteetaten.aurora.openshift.reference.springboot.service;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -9,6 +9,7 @@ public class S3Properties {
     private String accessKey;
     private String secretKey;
     private String bucketName;
+    private String objectPrefix;
 
     public String getServiceEndpoint() {
         return serviceEndpoint;
@@ -40,5 +41,13 @@ public class S3Properties {
 
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
+    }
+
+    public String getObjectPrefix() {
+        return objectPrefix;
+    }
+
+    public void setObjectPrefix(String objectPrefix) {
+        this.objectPrefix = objectPrefix;
     }
 }

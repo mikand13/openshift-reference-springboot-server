@@ -37,3 +37,4 @@ s3:
     accessKey: aurora
     secretKey: fragleberget
     bucketName: testbucket
+    objectPrefix: refapp

@@ -15,6 +15,8 @@ import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 
+import no.skatteetaten.aurora.openshift.reference.springboot.service.S3Properties;
+
 @Configuration
 @EnableConfigurationProperties(S3Properties.class)
 public class ApplicationConfig {
