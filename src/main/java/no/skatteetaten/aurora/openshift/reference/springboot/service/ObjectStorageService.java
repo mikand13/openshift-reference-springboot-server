@@ -69,11 +69,9 @@ public class ObjectStorageService {
 
     private static String readTextStream(InputStream input) throws IOException {
         var reader = new BufferedReader(new InputStreamReader(input));
-        var text = new StringBuffer();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            text.append(line);
-            text.append(System.getProperty("line.separator"));
+        var text = new StringBuilder();
+        for (String line = reader.readLine(); line != null; line = reader.readLine()) {
+            text.append(line).append(System.getProperty("line.separator"));
         }
         return text.toString();
     }
