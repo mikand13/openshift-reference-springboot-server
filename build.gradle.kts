@@ -1,15 +1,11 @@
 plugins {
     id("idea")
     id("java")
-    id("no.skatteetaten.gradle.aurora") version("4.0.0rc1")
+    id("no.skatteetaten.gradle.aurora") version("4.0.0rc3")
 }
 
 aurora {
     useAuroraDefaults
-
-    versions {
-        javaSourceCompatibility = "1.11"
-    }
 }
 
 dependencies {
